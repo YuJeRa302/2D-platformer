@@ -6,7 +6,7 @@ public class Landing : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D colider)
     {
-        if (colider.CompareTag("Ground"))
+        if (colider.TryGetComponent<Ground>(out Ground ground))
         {
             if (_swordManController.Rigidbody2D.velocity.y <= 0)
             {

@@ -30,11 +30,11 @@ public class BanditController : MonoBehaviour
 
             if (transform.localScale.x > 0)
             {
-                transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                FilpDirection(false);
             }
             else
             {
-                transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                FilpDirection(true);
             }
 
             if (_currentPoints >= _points.Length)
@@ -42,5 +42,9 @@ public class BanditController : MonoBehaviour
                 _currentPoints = 0;
             }
         }
+    }
+    private void FilpDirection(bool direction)
+    {
+        transform.localScale = new Vector3(direction ? 1 : -1, transform.localScale.y, transform.localScale.z);
     }
 }

@@ -1517,6 +1517,7 @@ GameObject:
   - component: {fileID: 1398275252}
   - component: {fileID: 1398275251}
   - component: {fileID: 1398275253}
+  - component: {fileID: 1398275254}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Ground
@@ -2482,6 +2483,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &1398275254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398275249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df58da171fae49439ac91baf052182b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1641503846
 GameObject:
   m_ObjectHideFlags: 0

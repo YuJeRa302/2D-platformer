@@ -82,7 +82,7 @@ public class SwordManController : MonoBehaviour
 
     private void FilpDirection(bool direction)
     {
-        transform.localScale = new Vector3(direction ? 1 : -1, 1, 1);
+        transform.localScale = new Vector3(direction ? 1 : -1, transform.localScale.y, transform.localScale.z);
     }
 
     private void Jump()
