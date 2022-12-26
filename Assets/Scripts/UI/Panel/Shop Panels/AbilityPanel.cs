@@ -9,17 +9,20 @@ public class AbilityPanel : ShopPanel
     [SerializeField] private GameObject _abilityContainer;
 
     private List<Ability> _abilities;
+    private PlayerAbility _playerAbility;
 
     public void FillingAbility(Player player)
     {
+        _playerAbility = player.GetComponent<PlayerAbility>();
+
         if (_abilities != null)
         {
             return;
         }
         else
         {
-            _player = player;
-            _abilities = player.GetListAbility();
+            Player = player;
+            _abilities = _playerAbility.GetListAbility();
 
             for (int i = 0; i < _abilities.Count; i++)
             {
@@ -42,9 +45,9 @@ public class AbilityPanel : ShopPanel
 
     public void TrySellAbility(Ability ability, AbilityView view)
     {
-        if (ability.Price <= _player.UpgradePoints)
+        if (ability.Price <= Player.UpgradePoints)
         {
-            _player.BuyAbility(ability);
+            _playerAbility.BuyAbility(ability);
             ability.Buy();
             view.SellButtonClick -= OnSellButton;
         }

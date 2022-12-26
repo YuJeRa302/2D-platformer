@@ -13,10 +13,10 @@ public class ShopPanel : Panels
     protected override void UpdatePanelInfo()
     {
         CloseAllPanels();
-        _coins.text = _player.Coins.ToString();
-        _equipmentPanel.FillingEquipment(_player);
-        _abilityPanel.FillingAbility(_player);
-        _consumablesPanel.GetPlayer(_player);
+        _coins.text = Player.Coins.ToString();
+        _equipmentPanel.FillingEquipment(Player);
+        _abilityPanel.FillingAbility(Player);
+        _consumablesPanel.GetPlayer(Player);
     }
 
     protected void CloseAllPanels()

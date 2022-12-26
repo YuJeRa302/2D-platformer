@@ -10,13 +10,13 @@ public class LevelSounds : MonoBehaviour
     [SerializeField] private AudioClip _storyClip;
     [SerializeField] private AudioClip _endedstoryClip;
 
-    public void ChangeSound(bool firstLevelActive, bool secondLevelActive)
+    public void ChangeSound(bool enableFirstLevelSound, bool enableSecondLevelSound)
     {
-        if (firstLevelActive == true)
+        if (enableFirstLevelSound == true)
         {
             PlayAudio(_firstLevelClip);
         }
-        else if (secondLevelActive == true)
+        else if (enableSecondLevelSound == true)
         {
             PlayAudio(_secondLevelClip);
         }

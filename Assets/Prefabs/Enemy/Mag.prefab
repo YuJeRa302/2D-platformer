@@ -130,6 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b33318ed8667c1458911b920c3422c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 6400717304856623570}
+  EnemyUi: {fileID: 3112888192096105203}
+  _enemy: {fileID: 4984936499026487984}
   _id: 5
   _name: Mag
   _damage: 20
@@ -137,8 +140,6 @@ MonoBehaviour:
   _goldReward: 3000
   _experienceReward: 2000
   _speed: 1
-  _animator: {fileID: 6400717304856623570}
-  _enemyUi: {fileID: 3112888192096105203}
   _spellDamage: 45
   _cooldownTime: 25
 --- !u!1 &2002029801302988903

@@ -1,19 +1,17 @@
-using UnityEngine;
-
 public class ConsumablesPanel : ShopPanel
 {
     private int costPotion = 50;
 
     public void GetPlayer(Player player)
     {
-        _player = player;
+        Player = player;
     }
 
     public void TrySellItem()
     {
-        if (costPotion <= _player.Coins)
+        if (costPotion <= Player.Coins)
         {
-            _player.BuyItems(costPotion);
+            Player.BuyConsumables(costPotion);
         }
     }
 

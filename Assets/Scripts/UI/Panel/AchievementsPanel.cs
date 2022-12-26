@@ -11,6 +11,7 @@ public class AchievementsPanel : Panels
     [SerializeField] private AchievementsView[] _achievementInPanel;
 
     private List<Achievements> _achievements;
+    private PlayerAchievements _playerAchievements;
 
     private void Start()
     {
@@ -19,7 +20,8 @@ public class AchievementsPanel : Panels
 
     public void Filling()
     {
-        _achievements = _player.GetListAchievements();
+        _playerAchievements = Player.GetComponent<PlayerAchievements>();
+        _achievements = _playerAchievements.GetListAchievements();
 
         for (int i = 0; i < _achievements.Count; i++)
         {
@@ -55,7 +57,8 @@ public class AchievementsPanel : Panels
 
     private void UpdateInfo()
     {
-        _achievements = _player.GetListAchievements();
+        _playerAchievements = Player.GetComponent<PlayerAchievements>();
+        _achievements = _playerAchievements.GetListAchievements();
 
         for (int index = 0; index < _achievementInPanel.Length; index++)
         {

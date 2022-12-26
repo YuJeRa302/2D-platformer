@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     private int _currentExperience = 0;
     private int _maxExperience = 100;
     private int _minPoints = 0;
-    private int _abilityPoints = 0;
+    private int _abilityPoints = 2;
     private int _healing = 20;
     private Dictionary<int, int> _levels = new Dictionary<int, int>();
 

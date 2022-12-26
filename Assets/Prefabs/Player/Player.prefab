@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0d7deff34fe9842b72da6e6f7a0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _name: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u0421\u043A\u0435\u043B\u0435\u0442\u043E\u0432"
   _sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   _currentCount: 0
@@ -252,7 +253,7 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   _price: 0
   _isBayed: 0
-  Armor: 0
+  _armor: 0
 --- !u!1 &1620380054382463905
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0d7deff34fe9842b72da6e6f7a0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _name: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u0411\u0430\u043D\u0434\u0438\u0442\u043E\u0432"
   _sprite: {fileID: 21300000, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
   _currentCount: 0
@@ -594,6 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0d7deff34fe9842b72da6e6f7a0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _name: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u041C\u0443\u0445\u043E\u043C\u043E\u0440\u043E\u0432"
   _sprite: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
   _currentCount: 0
@@ -871,7 +874,7 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   _price: 0
   _isBayed: 0
-  Armor: 0
+  _armor: 0
 --- !u!1 &5027838180736353076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0d7deff34fe9842b72da6e6f7a0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _name: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u0411\u0430\u043D\u0434\u0438\u0442\u043E\u0432"
   _sprite: {fileID: 21300000, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
   _currentCount: 0
@@ -2101,6 +2105,9 @@ GameObject:
   - component: {fileID: 2655360035987866959}
   - component: {fileID: 4601888799350365188}
   - component: {fileID: 4361056127870947266}
+  - component: {fileID: 7247242268313615427}
+  - component: {fileID: 6153924637954229318}
+  - component: {fileID: 1300875797897258954}
   - component: {fileID: 9169430980809358376}
   m_Layer: 9
   m_Name: Player
@@ -2189,16 +2196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ded1493f627dee4991f33fecd578108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weponsTransform: {fileID: 0}
-  _armorsTransform: {fileID: 0}
-  _achievementsTransform: {fileID: 0}
-  _weapon: []
-  _armor: []
-  _abilities: []
-  _achievements:
-  - {fileID: 5401192786680725599}
   _wallet: {fileID: 7112253900409062793}
   _playerStats: {fileID: 0}
+  _playerMovement: {fileID: 0}
+  _playerAbility: {fileID: 0}
+  _playerEquipment: {fileID: 0}
 --- !u!114 &4601888799350365188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,6 +2234,52 @@ MonoBehaviour:
   _wallet: {fileID: 0}
   _maxPlayerLevel: 0
   _uIUpdate: {fileID: 0}
+--- !u!114 &7247242268313615427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112253900409062799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b8dfc14c550bf438fa5db1ff348d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _playerStats: {fileID: 0}
+  _abilities: []
+--- !u!114 &6153924637954229318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112253900409062799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072f26bae46e49c46821bf455f97e9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weponsTransform: {fileID: 0}
+  _armorsTransform: {fileID: 0}
+  _weapon: []
+  _armor: []
+  _wallet: {fileID: 0}
+--- !u!114 &1300875797897258954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112253900409062799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cb063085b826645a66c4b292dd8263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _achievementsTransform: {fileID: 0}
+  _achievements: []
 --- !u!61 &9169430980809358376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2306,6 +2354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0d7deff34fe9842b72da6e6f7a0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _name: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u0421\u043A\u0435\u043B\u0435\u0442\u043E\u0432"
   _sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   _currentCount: 0
@@ -2698,7 +2747,7 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   _price: 0
   _isBayed: 0
-  Armor: 0
+  _armor: 0
 --- !u!1 &9068836407936935945
 GameObject:
   m_ObjectHideFlags: 0

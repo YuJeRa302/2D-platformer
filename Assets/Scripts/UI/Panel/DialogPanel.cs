@@ -11,7 +11,7 @@ public class DialogPanel : Panels
 
     public void GetPlayer(Player player)
     {
-        _player = player;
+        Player = player;
     }
 
     public void GetObjectName(string value)
@@ -26,7 +26,7 @@ public class DialogPanel : Panels
         {
             if (panel.Name.Equals(_nameObject))
             {
-                panel.OpenPanel(_player);
+                panel.OpenPanel(Player);
             }
         }
 

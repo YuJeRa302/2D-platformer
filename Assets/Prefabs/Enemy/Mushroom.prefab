@@ -94,6 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd29ab26ef443d74fac26d69932456ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 603445558845324331}
+  EnemyUi: {fileID: 3481351278772794282}
+  _enemy: {fileID: 6883922442701312376}
   _id: 2
   _name: "\u041C\u0443\u0445\u043E\u043C\u043E\u0440"
   _damage: 25
@@ -101,8 +104,6 @@ MonoBehaviour:
   _goldReward: 50
   _experienceReward: 25
   _speed: 1
-  _animator: {fileID: 603445558845324331}
-  _enemyUi: {fileID: 3481351278772794282}
 --- !u!1 &6671769847374593
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ambientVolume: 0.3530073
   _interfaceVolume: 0.36654097
-  _isStoryShow: 0
+  _isStoryShow: 1

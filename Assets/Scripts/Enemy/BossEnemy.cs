@@ -11,7 +11,6 @@ public class BossEnemy : Enemy
     private bool isUseSpell = false;
     private IEnumerator _cooldownSpell;
     private int _delayAttack = 1;
-    private float _minTime = 0f;
 
     enum TransitionParametr
     {
@@ -25,8 +24,8 @@ public class BossEnemy : Enemy
 
     protected override void Start()
     {
-        _enemyUi.SetSliderValue(Health);
-        _target = FindObjectOfType<Player>().GetComponent<Transform>();
+        EnemyUi.SetSliderValue(Health);
+        Target = FindObjectOfType<Player>();
         _cooldownSpell = CooldownSpell(_cooldownTime);
         StartCoroutine(_cooldownSpell);
     }
@@ -35,13 +34,13 @@ public class BossEnemy : Enemy
     {
         var waitForSeconds = new WaitForSeconds(_delayAttack);
 
-        while (isAttack == true)
+        while (IsAttack == true)
         {
             player.TakeDamage(Damage);
 
             if (isUseSpell == true)
             {
-                _animator.Play(TransitionParametr.Cast.ToString());
+                Animator.Play(TransitionParametr.Cast.ToString());
                 isUseSpell = false;
                 player.TakeDamage(_spellDamage);
 
@@ -72,7 +71,6 @@ public class BossEnemy : Enemy
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            var normalizedValue = Mathf.Clamp(timeLeft, _minTime, _cooldownTime);
             yield return null;
         }
 

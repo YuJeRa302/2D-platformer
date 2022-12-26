@@ -49,7 +49,7 @@ public class QuestPanel : Panels
 
     private void SetLevelParametr(Levels loadLevel)
     {
-        _levelLoad.LoadSecondLoaction(loadLevel, _player);
+        _levelLoad.LoadSecondLoaction(loadLevel, Player);
     }
 
     private void LoadButtons(List<Buttons> buttons)

@@ -5,24 +5,27 @@ public abstract class Panels : MonoBehaviour
     [Header("[Name Object]")]
     [SerializeField] private string _name;
 
-    protected Player _player;
+    protected Player Player;
+
+    private PlayerMovement _playerMovement;
 
     public string Name => _name;
 
     public virtual void OpenPanel(Player player)
     {
-        _player = player;
+        Player = player;
+        _playerMovement = player.GetComponent<PlayerMovement>();
         UpdatePanelInfo();
         gameObject.SetActive(true);
-        _player.GetComponent<PlayerMovement>().enabled = false;
-        _player.SetIdleState();
+        _playerMovement.enabled = false;
+        _playerMovement.Recover();
     }
 
     public virtual void ClosePanel()
     {
         gameObject.SetActive(false);
-        _player.GetComponent<PlayerMovement>().enabled = true;
-        _player.SetIdleState();
+        _playerMovement.enabled = true;
+        _playerMovement.Recover();
     }
 
     protected virtual void UpdatePanelInfo() { }

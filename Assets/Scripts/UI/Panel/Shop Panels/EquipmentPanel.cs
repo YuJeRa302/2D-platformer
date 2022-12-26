@@ -12,18 +12,21 @@ public class EquipmentPanel : ShopPanel
 
     private List<Weapon> _weapons;
     private List<Armor> _armors;
+    private PlayerEquipment _playerEquipment;
 
     public void FillingEquipment(Player player)
     {
+        _playerEquipment = player.GetComponent<PlayerEquipment>();
+
         if (_weapons != null)
         {
             return;
         }
         else
         {
-            _player = player;
-            _weapons = player.GetListWeapon();
-            _armors = player.GetListArmor();
+            Player = player;
+            _weapons = _playerEquipment.GetListWeapon();
+            _armors = _playerEquipment.GetListArmor();
 
             for (int i = 1; i < _weapons.Count; i++)
             {
@@ -63,9 +66,9 @@ public class EquipmentPanel : ShopPanel
 
     public void TrySellWeapon(Weapon weapon, WeaponView view)
     {
-        if (weapon.Price <= _player.Coins)
+        if (weapon.Price <= Player.Coins)
         {
-            _player.BuyWeapon(weapon);
+            _playerEquipment.BuyWeapon(weapon);
             weapon.Buy();
             view.SellButtonClick -= OnSellWeapon;
         }
@@ -73,9 +76,9 @@ public class EquipmentPanel : ShopPanel
 
     public void TrySellArmor(Armor armor, ArmorView view)
     {
-        if (armor.Price <= _player.Coins)
+        if (armor.Price <= Player.Coins)
         {
-            _player.BuyArmor(armor);
+            _playerEquipment.BuyArmor(armor);
             armor.Buy();
             view.SellButtonClick -= OnSellArmor;
         }

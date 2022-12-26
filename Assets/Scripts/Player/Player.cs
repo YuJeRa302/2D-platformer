@@ -1,48 +1,28 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [Header("[Transform]")]
-    [SerializeField] private Transform _weponsTransform;
-    [SerializeField] private Transform _armorsTransform;
-    [SerializeField] private Transform _achievementsTransform;
-    [Header("[Weapon]")]
-    [SerializeField] private List<Weapon> _weapon;
-    [Header("[Armor]")]
-    [SerializeField] private List<Armor> _armor;
-    [Header("[Ability]")]
-    [SerializeField] private List<Ability> _abilities;
-    [Header("[Achievements]")]
-    [SerializeField] private List<Achievements> _achievements;
     [Header("[Wallet]")]
     [SerializeField] private Wallet _wallet;
     [Header("[Player Stats]")]
     [SerializeField] private PlayerStats _playerStats;
     [Header("[Player Movement]")]
     [SerializeField] private PlayerMovement _playerMovement;
+    [Header("[Player Ability]")]
+    [SerializeField] private PlayerAbility _playerAbility;
+    [Header("[Player Equipment]")]
+    [SerializeField] private PlayerEquipment _playerEquipment;
 
-    private int _currentHealth;
+    private int _currentHealth = 0;
     private int _minHealth = 0;
-    private int _maxHealth = 100;
     private int _playerArmor = 0;
-    private Weapon _currentWeapon;
-    private Armor _currentArmor;
+    private int _maxHealth = 100;
     private UnityEvent<int> _healthBarUpdate = new UnityEvent<int>();
     private UnityEvent _playerDie = new UnityEvent();
 
-    enum NameAbility
-    {
-        Health,
-        Armor
-    }
-
     public int UpgradePoints => _playerStats.AbilityPoints;
     public int Coins => _wallet.GiveCoin();
-    public int CountWeapon => _weapon.Count;
-    public int CountArmor => _armor.Count;
 
     public event UnityAction<int> ChangedHealth
     {
@@ -56,13 +36,10 @@ public class Player : MonoBehaviour
         remove => _playerDie.RemoveListener(value);
     }
 
-    private void Awake()
+    private void Start()
     {
-        AddItemToList();
-        _currentWeapon = _weapon[0];
-        _currentArmor = _armor[0];
-        _playerArmor = _currentArmor.ItemArmor;
         _currentHealth = _maxHealth;
+        _playerArmor = _playerEquipment.CurrentArmor.ItemArmor;
     }
 
     public void TakeDamage(int damage)
@@ -91,72 +68,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void BuyWeapon(Weapon weapon)
+    public void UpdateArmor(int value)
     {
-        _wallet.Buy(weapon.Price);
-        _weapon.Add(weapon);
-        _currentWeapon.gameObject.SetActive(false);
-
-        if (_currentWeapon.Damage < weapon.Damage)
-        {
-            _currentWeapon = weapon;
-        }
-        else
-        {
-            return;
-        }
+        _playerArmor += value;
     }
 
-    public void BuyArmor(Armor armor)
+    public void UpdateMaxHealth(int value)
     {
-        _wallet.Buy(armor.Price);
-        _armor.Add(armor);
-        _currentArmor.gameObject.SetActive(false);
-
-        if (_currentArmor.ItemArmor < armor.ItemArmor)
-        {
-            _currentArmor = armor;
-        }
-        else
-        {
-            return;
-        }
+        _maxHealth += value;
     }
 
-    public void BuyItems(int value)
+    public void BuyConsumables(int value)
     {
         _wallet.Buy(value);
         _playerStats.TakePotion();
-    }
-
-    public void BuyAbility(Ability ability)
-    {
-        if (_playerStats.AbilityPoints >= ability.Price)
-        {
-            _abilities.Add(ability);
-            _playerStats.GivePoints(ability.Price);
-            ApplyAbility(ability);
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    public void OnEnemyDie(Enemy enemy)
-    {
-        _playerStats.OnEnemyDie(enemy);
-    }
-
-    public void UpdateAchievements(Enemy enemy, int countEnemy)
-    {
-        foreach (var achievement in _achievements)
-        {
-            if (achievement.Id == enemy.Id)
-            {
-                achievement.UpdateCount(countEnemy);
-            }
-        }
     }
 
     public void Recover()
@@ -164,76 +89,5 @@ public class Player : MonoBehaviour
         _currentHealth = _maxHealth;
         _playerMovement.Recover();
         _healthBarUpdate.Invoke(_currentHealth);
-    }
-
-    public void SetIdleState()
-    {
-        _playerMovement.Recover();
-    }
-
-    public List<Weapon> GetListWeapon()
-    {
-        return _weapon;
-    }
-
-    public List<Armor> GetListArmor()
-    {
-        return _armor;
-    }
-
-    public List<Ability> GetListAbility()
-    {
-        return _abilities;
-    }
-
-    public List<Achievements> GetListAchievements()
-    {
-        return _achievements;
-    }
-
-    private void AddItemToList()
-    {
-        for (int i = 0; i < _weponsTransform.childCount; i++)
-        {
-            _weapon.Add(_weponsTransform.GetChild(i).GetComponent<Sword>());
-        }
-
-        for (int i = 0; i < _armorsTransform.childCount; i++)
-        {
-            _armor.Add(_armorsTransform.GetChild(i).GetComponent<Helmet>());
-        }
-
-        for (int i = 0; i < _achievementsTransform.childCount; i++)
-        {
-            _achievements.Add(_achievementsTransform.GetChild(i).GetComponent<EnemyAchiev>());
-        }
-    }
-
-    private void ApplyAbility(Ability ability)
-    {
-        TryGetValue(ability.Name, out NameAbility nameAbility);
-
-        switch (nameAbility)
-        {
-            case NameAbility.Armor:
-                _playerArmor += ability.Value;
-                break;
-            case NameAbility.Health:
-                _maxHealth += ability.Value;
-                break;
-        }
-    }
-
-    private bool TryGetValue(string value, out NameAbility nameAbility)
-    {
-        nameAbility = default(NameAbility);
-        bool success = Enum.IsDefined(typeof(NameAbility), value);
-
-        if (success)
-        {
-            nameAbility = (NameAbility)Enum.Parse(typeof(NameAbility), value);
-        }
-
-        return success;
     }
 }

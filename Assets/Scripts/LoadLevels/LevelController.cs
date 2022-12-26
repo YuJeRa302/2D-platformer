@@ -22,12 +22,16 @@ public class LevelController : MonoBehaviour
     private Levels _currentLevel;
     private bool _isPlayerAlive = true;
     private Player _player;
+    private PlayerStats _playerStats;
+    private PlayerAchievements _playerAchievements;
     private int _lastBossId = 5;
 
     public void TakeParametrsLevel(Levels loadLevel, Player player, Transform spawnPosition)
     {
         _currentLevel = loadLevel;
         _player = player;
+        _playerStats = player.GetComponent<PlayerStats>();
+        _playerAchievements = player.GetComponent<PlayerAchievements>();
         SpawnPlayer(spawnPosition);
         SetLevelParametrs();
     }
@@ -40,7 +44,7 @@ public class LevelController : MonoBehaviour
     public void OnEnemyDie(Enemy enemy)
     {
         _countEnemyDie++;
-        _player.OnEnemyDie(enemy);
+        _playerStats.OnEnemyDie(enemy);
         enemy.Dying -= OnEnemyDie;
 
         if (enemy.Id == _lastBossId)
@@ -100,7 +104,7 @@ public class LevelController : MonoBehaviour
 
     private void UpdateAchievements(Enemy enemy, int countEnemy)
     {
-        _player.UpdateAchievements(enemy, countEnemy);
+        _playerAchievements.UpdateAchievements(enemy, countEnemy);
     }
 
     private void KillLastBoss()

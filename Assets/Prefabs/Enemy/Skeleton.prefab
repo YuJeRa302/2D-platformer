@@ -598,6 +598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd29ab26ef443d74fac26d69932456ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 8024924030342084105}
+  EnemyUi: {fileID: 4873173431639809537}
+  _enemy: {fileID: 4097503694699765042}
   _id: 3
   _name: "\u0421\u043A\u0435\u043B\u0435\u0442"
   _damage: 35
@@ -605,5 +608,3 @@ MonoBehaviour:
   _goldReward: 100
   _experienceReward: 35
   _speed: 1
-  _animator: {fileID: 8024924030342084105}
-  _enemyUi: {fileID: 4873173431639809537}
