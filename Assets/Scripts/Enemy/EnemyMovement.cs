@@ -48,15 +48,7 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, _enemy.Speed * Time.deltaTime);
         var rotation = transform.position.x - Target.transform.position.x;
         Animator.Play(TransitionParametr.Run.ToString());
-
-        if (rotation > 0)
-        {
-            FilpDirection(false);
-        }
-        else
-        {
-            FilpDirection(true);
-        }
+        FilpDirection(rotation < 0);
     }
 
     protected void FilpDirection(bool direction)

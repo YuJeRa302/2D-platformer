@@ -68,12 +68,7 @@ public class BossEnemy : Enemy
 
     private IEnumerator CooldownSpell(float timeLeft)
     {
-        while (timeLeft > 0)
-        {
-            timeLeft -= Time.deltaTime;
-            yield return null;
-        }
-
+        yield return new WaitForSeconds(timeLeft);
         isUseSpell = true;
     }
 
